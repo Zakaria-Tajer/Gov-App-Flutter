@@ -1,6 +1,12 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:govapp/base_client.dart';
+import 'package:govapp/screens/ListOfTransactions.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
+import 'package:localstorage/localstorage.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -12,8 +18,22 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _email = TextEditingController();
+  final TextEditingController _password = TextEditingController();
+
+  final LocalStorage storage = LocalStorage('localstorage_app');
+
+  void navigatePage(BuildContext ctx) {
+    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
+      return ListOfTransactions();
+    }));
+  }
+
   @override
   Widget build(BuildContext context) {
+    if (storage.getItem("token") != null) {
+      navigatePage(context);
+    }
     return Scaffold(
         backgroundColor: Colors.grey[300],
         body: SafeArea(
@@ -37,10 +57,11 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12)),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
-                      decoration: InputDecoration(
+                      controller: _email,
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Email',
                       ),
@@ -59,11 +80,12 @@ class _LoginPageState extends State<LoginPage> {
                       color: Colors.grey[200],
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(12)),
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 20.0),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 20.0),
                     child: TextField(
+                      controller: _password,
                       obscureText: true,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Password',
                       ),
@@ -73,6 +95,7 @@ class _LoginPageState extends State<LoginPage> {
               ),
 
               const SizedBox(height: 20),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -80,19 +103,40 @@ class _LoginPageState extends State<LoginPage> {
                   decoration: BoxDecoration(
                       color: Colors.deepPurple,
                       borderRadius: BorderRadius.circular(12)),
-                  child: const Center(
-                      child: Text(
-                    'Sign in',
-                    style: TextStyle(color: Colors.white, fontSize: 17),
+                  child: Center(
+                      child: TextButton(
+                    style: TextButton.styleFrom(
+                      primary: Colors.white,
+                    ),
+                    onPressed: () async {
+                      var uri = Uri.parse(
+                          'http://localhost:8080/api/v1/admin/auth/login');
+
+                      Map<String, dynamic> data = {
+                        'email': _email.text,
+                        'password': _password.text,
+                      };
+
+                      String jsonData = jsonEncode(data);
+
+                      Response res = await http.post(uri,
+                          body: jsonData,
+                          headers: {'Content-Type': 'application/json'});
+                      Map<String, dynamic> responseBody = jsonDecode(res.body);
+
+                      storage.setItem("token", responseBody['token']);
+                      print(responseBody['token']);
+
+                      if (storage.getItem("token") != null) {
+                        navigatePage(context);
+                      }
+                    },
+                    child: const Text('Sign in'),
                   )),
                 ),
               )
             ],
           ),
         )));
-  }
-
-  void loginMinister() async {
-    // final response =  await http.post("")
   }
 }
