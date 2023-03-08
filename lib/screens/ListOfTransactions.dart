@@ -39,7 +39,7 @@ class _MyListWidgetState extends State<ListOfTransactions> {
               final data = snapshot.data![index];
               return Card(
                 elevation: 5,
-                margin: EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -47,7 +47,7 @@ class _MyListWidgetState extends State<ListOfTransactions> {
                       padding: const EdgeInsets.all(16.0),
                       child: Text(
                         "Transaction ID: ${data["transactionId"]}",
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
@@ -57,21 +57,21 @@ class _MyListWidgetState extends State<ListOfTransactions> {
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         "Transaction Name: ${data["transactionName"]}",
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 16.0),
                       child: Text(
                         "Transaction Description: ${data["transactionDescription"]}",
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(
                         "Transaction Date: ${data["transactionDate"]}",
-                        style: TextStyle(fontSize: 16),
+                        style: const TextStyle(fontSize: 16),
                       ),
                     ),
                   ],
@@ -82,7 +82,7 @@ class _MyListWidgetState extends State<ListOfTransactions> {
         } else if (snapshot.hasError) {
           return Text("${snapshot.error}");
         }
-        return CircularProgressIndicator();
+        return const CircularProgressIndicator();
       },
     );
   }

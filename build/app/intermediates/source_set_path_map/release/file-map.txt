@@ -1,0 +1,13 @@
+com.example.govapp-jetified-window-java-1.0.0-beta04-0 /home/cosmic-sword/.gradle/caches/transforms-3/006d93cd422dbc43e89591147c2de572/transformed/jetified-window-java-1.0.0-beta04/res
+com.example.govapp-core-1.6.0-1 /home/cosmic-sword/.gradle/caches/transforms-3/4ca28c4a71705f8a687c69dda140a277/transformed/core-1.6.0/res
+com.example.govapp-jetified-annotation-experimental-1.1.0-2 /home/cosmic-sword/.gradle/caches/transforms-3/8965c941cf4bee4d72541b965c7c9d39/transformed/jetified-annotation-experimental-1.1.0/res
+com.example.govapp-jetified-window-1.0.0-beta04-3 /home/cosmic-sword/.gradle/caches/transforms-3/dee59bb480020f42d53c2ea15e4501f7/transformed/jetified-window-1.0.0-beta04/res
+com.example.govapp-main-4 /home/cosmic-sword/govapp/android/app/src/main/res
+com.example.govapp-release-5 /home/cosmic-sword/govapp/android/app/src/release/res
+com.example.govapp-pngs-6 /home/cosmic-sword/govapp/build/app/generated/res/pngs/release
+com.example.govapp-resValues-7 /home/cosmic-sword/govapp/build/app/generated/res/resValues/release
+com.example.govapp-rs-8 /home/cosmic-sword/govapp/build/app/generated/res/rs/release
+com.example.govapp-mergeReleaseResources-9 /home/cosmic-sword/govapp/build/app/intermediates/incremental/release/mergeReleaseResources/merged.dir
+com.example.govapp-mergeReleaseResources-10 /home/cosmic-sword/govapp/build/app/intermediates/incremental/release/mergeReleaseResources/stripped.dir
+com.example.govapp-merged_res-11 /home/cosmic-sword/govapp/build/app/intermediates/merged_res/release
+com.example.govapp-packaged_res-12 /home/cosmic-sword/govapp/build/path_provider_android/intermediates/packaged_res/release
